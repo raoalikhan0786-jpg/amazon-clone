@@ -1,19 +1,16 @@
 import { Link } from "react-router-dom";
-
 import { useContext } from "react";
-
-import { StoreContext }
-  from "../context/StoreContext";
-
-const userInfo =
-  JSON.parse(
-    localStorage.getItem("userInfo")
-  );
+import { StoreContext } from "../context/StoreContext";
 
 const Navbar = () => {
 
   const { cart } =
     useContext(StoreContext);
+
+  const userInfo =
+    JSON.parse(
+      localStorage.getItem("userInfo")
+    );
 
   return (
 
@@ -28,18 +25,13 @@ const Navbar = () => {
         <div className="nav-location">
 
           <p>Hello</p>
-
-          <h4>
-            Select your address
-          </h4>
+          <h4>Select your address</h4>
 
         </div>
 
         <div className="nav-search">
 
-          <select
-            className="search-select"
-          >
+          <select className="search-select">
 
             <option>All</option>
 
@@ -61,84 +53,74 @@ const Navbar = () => {
           EN
         </div>
 
-        {/* ACCOUNT */}
+        {
 
-        <div className="nav-account">
+          userInfo ? (
 
-          {
+            <div className="nav-account">
 
-            userInfo ? (
+              <p>Hello,</p>
+              <h4>My Account</h4>
 
-              <>
+            </div>
 
-                <p>
-                  Hello,
-                  {userInfo.name}
-                </p>
+          ) : (
 
-                <h4>
-                  My Account
-                </h4>
+            <Link
+              to="/login"
+              className="login-link"
+              style={{
+                color: "white",
+                textDecoration: "none"
+              }}
+            >
 
-              </>
+              <div className="nav-account">
 
-            ) : (
+                <p>Hello, sign in</p>
+                <h4>Login</h4>
 
-              <Link to="/login">
+              </div>
 
-                <p>
-                  Hello, sign in
-                </p>
+            </Link>
 
-                <h4>
-                  Accounts & Lists
-                </h4>
+          )
 
-              </Link>
-
-            )
-
-          }
-
-        </div>
-
-        {/* ORDERS */}
+        }
 
         <div className="nav-orders">
 
           <p>Returns</p>
-
-          <h4>
-            & Orders
-          </h4>
+          <h4>& Orders</h4>
 
         </div>
 
-        {/* CART */}
+        <Link
+          to="/register"
+          style={{
+            color: "white",
+            textDecoration: "none",
+            marginRight: "20px"
+          }}
+        >
+          Register
+        </Link>
 
         <Link
           to="/cart"
           className="cart-link"
         >
-
           🛒 Cart ({cart.length})
-
         </Link>
 
       </nav>
 
-      {/* MENU BAR */}
-
       <div className="menu-bar">
 
         <p>Today's Deals</p>
-
         <p>Customer Service</p>
-
         <p>Registry</p>
-
         <p>Gift Cards</p>
-
         <p>Sell</p>
 
       </div>
