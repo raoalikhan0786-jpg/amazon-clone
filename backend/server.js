@@ -14,25 +14,24 @@ connectDB();
 
 const app = express();
 
-// CORS FIX
 app.use(
     cors({
-        origin: "https://amazon-clone-vv28.vercel.app",
+        origin: [
+            "https://amazon-clone-vv28.vercel.app",
+        ],
         credentials: true,
     })
 );
 
 app.use(express.json());
 
-// Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/products", productRoutes);
-app.use("/api/orders", orderRoutes);
-
-// Test Route
 app.get("/", (req, res) => {
     res.send("API Running");
 });
+
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 
 const PORT = process.env.PORT || 5000;
 
