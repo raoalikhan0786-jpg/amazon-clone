@@ -13,6 +13,9 @@ const Register = () => {
     const [password, setPassword] =
         useState("");
 
+    const [showPassword, setShowPassword] =
+        useState(false);
+
     const submitHandler =
         async (e) => {
 
@@ -20,22 +23,16 @@ const Register = () => {
 
             try {
 
-                const { data } =
-                    await API.post(
-
-                        "/auth/register",
-
-                        {
-                            name,
-                            email,
-                            password
-                        }
-
-                    );
+                await API.post(
+                    "/auth/register",
+                    {
+                        name,
+                        email,
+                        password
+                    }
+                );
 
                 alert("Register Success");
-
-                console.log(data);
 
             } catch (error) {
 
@@ -74,14 +71,58 @@ const Register = () => {
                     }
                 />
 
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={(e) =>
-                        setPassword(e.target.value)
-                    }
-                />
+                <div
+                    style={{
+                        position: "relative",
+                        width: "100%"
+                    }}
+                >
+
+                    <input
+                        type={
+                            showPassword
+                                ? "text"
+                                : "password"
+                        }
+                        placeholder="Enter Password"
+                        value={password}
+                        onChange={(e) =>
+                            setPassword(
+                                e.target.value
+                            )
+                        }
+                        style={{
+                            width: "100%",
+                            paddingRight: "50px"
+                        }}
+                    />
+
+                    <span
+                        onClick={() =>
+                            setShowPassword(
+                                !showPassword
+                            )
+                        }
+                        style={{
+                            position: "absolute",
+                            right: "15px",
+                            top: "50%",
+                            transform:
+                                "translateY(-50%)",
+                            cursor: "pointer",
+                            fontSize: "20px"
+                        }}
+                    >
+
+                        {
+                            showPassword
+                                ? "🙈"
+                                : "👁️"
+                        }
+
+                    </span>
+
+                </div>
 
                 <button type="submit">
                     Register
