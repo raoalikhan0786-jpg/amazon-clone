@@ -59,10 +59,91 @@ const Navbar = () => {
       {/* 4. राइट side यूटिलिटी लिंक्स (भाषा, अकाउंट ड्रॉपडाउन, ऑर्डर्स, कार्ट) */}
       <div className="nav-right-links">
 
-        {/* भाषा सिलेक्शन (🌐 EN) */}
-        <div className="language-selector-box">
-          <span>🌐 EN</span>
-          <FaCaretDown className="link-caret-icon" />
+        {/* 🌟 UPDATED: Amazon-Style Language & Currency Dropdown */}
+        <div className="nav-item-language-dropdown">
+          <div className="language-trigger-box">
+            <span>🌐 EN</span>
+            <FaCaretDown className="link-caret-icon" />
+          </div>
+
+          {/* 🌟 यहाँ से भाषा और करेंसी का ड्रॉपडाउन मेन्यू शुरू होता है */}
+          <div className="azora-language-dropdown-menu">
+
+            {/* 1. भाषा बदलने का सेक्शन */}
+            <div className="dropdown-lang-section">
+              <p className="dropdown-section-title">Change language <a href="#learn-more" className="lang-link-blue">Learn more</a></p>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-language" defaultChecked />
+                <span className="radio-text">English - EN</span>
+              </label>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-language" />
+                <span className="radio-text">español - ES</span>
+              </label>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-language" />
+                <span className="radio-text">العربية - AR</span>
+              </label>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-language" />
+                <span className="radio-text">Deutsch - DE</span>
+              </label>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-language" />
+                <span className="radio-text">עברית - HE</span>
+              </label>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-language" />
+                <span className="radio-text">한국어 - KO</span>
+              </label>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-language" />
+                <span className="radio-text">português - PT</span>
+              </label>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-language" />
+                <span className="radio-text">中文 (简体) - ZH</span>
+              </label>
+            </div>
+
+            <div className="dropdown-menu-divider"></div>
+
+            {/* 2. करेंसी बदलने का सेक्शन */}
+            <div className="dropdown-currency-section">
+              <p className="dropdown-section-title">Change currency</p>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-currency" defaultChecked />
+                <span className="radio-text">₹ - INR - Indian Rupee</span>
+              </label>
+
+              <label className="lang-radio-option">
+                <input type="radio" name="site-currency" />
+                <span className="radio-text">$ - USD - US Dollar</span>
+              </label>
+
+              <a href="#see-all" className="lang-link-blue see-all-link">See all</a>
+            </div>
+
+            <div className="dropdown-menu-divider"></div>
+
+            {/* 3. बॉटम शॉपिंग लोकेशन नोट */}
+            <div className="dropdown-lang-footer">
+              <p className="shopping-location-notice">
+                🇮🇳 You are shopping on <br /><strong>Azora.com</strong>
+              </p>
+              <a href="#change-country" className="lang-link-blue">Change country/region.</a>
+            </div>
+
+          </div>
         </div>
 
         {/* 🌟 यहाँ पर हमने नया 'Account & Lists' ड्रॉपडाउन मेन्यू पूरी तरह फिट कर दिया है */}

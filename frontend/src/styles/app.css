@@ -1,3 +1,29 @@
+/* 🌍 GLOBAL RESET FOR 100% RESPONSIVENESS ACCROSS ALL DEVICES */
+* {
+  box-sizing: border-box !important;
+  /* पैडिंग या बॉर्डर डिब्बों को स्क्रीन से बाहर नहीं धकेलेगी */
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  /* 🌟 जादू: इससे किसी भी डिवाइस पर पेज कभी भी राइट-लेफ्ट फालतू नहीं भागेगा */
+  -webkit-text-size-adjust: 100%;
+  background-color: #eaeded;
+}
+
+/* इमेज स्केलिंग रिसेट */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1486,25 +1512,30 @@ body {
   box-shadow: 0 0 3px 2px rgba(228, 121, 17, 0.5);
 }
 
-/* 🌟 फोटो की तरह दिखने वाला शानदार पीला/टील सबमिट बटन */
+/* 🌟 आपके प्रोजेक्ट की थीम से मैच करता हुआ प्रीमियम लाइट-ब्लू/ग्रीन ग्रैडिएंट सबमिट बटन */
 .auth-submit-yellow-btn {
   width: 100%;
   height: 31px;
-  background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
-  /* अमेज़न ग्रेडिएंट */
-  border: 1px solid;
-  border-color: #a88734 #9c7e31 #846a29;
+  background: linear-gradient(135deg, #10b981, #059669);
+  /* कड़क लाइट-ब्लू/ग्रीन प्रीमियम ग्रैडिएंट */
+  border: 1px solid #047857;
   border-radius: 3px;
-  color: #111111;
+  color: #ffffff;
+  /* टेक्स्ट का रंग सफ़ेद कर दिया ताकि ग्रीन पर एकदम साफ़ दिखे */
   font-size: 0.8125rem;
+  font-weight: 700;
+  /* बटन का टेक्स्ट अमेज़न की तरह कड़क बोल्ड */
   cursor: pointer;
   outline: none;
   margin-top: 6px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .2) inset;
+  transition: all 0.2s ease;
 }
 
+/* होवर (माउस ले जाने) पर बटन का शानदार इफ़ेक्ट */
 .auth-submit-yellow-btn:hover {
-  background: linear-gradient(to bottom, #f5d78e, #eeb933);
+  background: linear-gradient(135deg, #34d399, #10b981);
+  box-shadow: 0 4px 10px rgba(4, 120, 87, 0.25);
 }
 
 /* प्राइवेसी नोटिस टेक्स्ट */
@@ -1672,4 +1703,2723 @@ body {
   color: #555555;
   margin: 0;
   letter-spacing: 0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   ADDITIONAL REGISTER PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+/* पासवर्ड के नीचे का बारीक हिंट टेक्स्ट */
+.auth-password-hint {
+  font-size: 0.6875rem;
+  color: #111111;
+  margin-top: 6px;
+}
+
+.auth-password-hint i {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  color: #0066c0;
+  margin-right: 4px;
+}
+
+/* सबसे नीचे का 'Already have an account?' टेक्स्ट */
+.auth-already-account-txt {
+  font-size: 0.8125rem;
+  color: #111111;
+  margin: 14px 0 0 0;
+}
+
+.auth-already-account-txt a {
+  color: #0066c0;
+  text-decoration: none;
+}
+
+.auth-already-account-txt a:hover {
+  color: #c45500;
+  text-decoration: underline;
+}
+
+.auth-already-account-txt a i {
+  font-size: 0.6rem;
+  margin-left: 2px;
+}
+
+/* ==========================================================================
+   AZORA PREMIUM LANGUAGE & CURRENCY DROPDOWN STYLES
+   ========================================================================== */
+
+/* मुख्य कंटेनर जो पोजीशन को होल्ड करेगा */
+.nav-item-language-dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 14px 8px;
+  /* नेवबार के बाकी आइटम्स से अलाइन रखने के लिए */
+  cursor: pointer;
+}
+
+/* हमेशा दिखने वाला टेक्स्ट/आइकॉन बॉक्स */
+.language-trigger-box {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.language-trigger-box span {
+  font-size: 0.85rem;
+}
+
+/* 🌟 ड्रॉपडाउन बॉक्स की मेन स्टाइलिंग (शुरुआत में छुपा रहेगा) */
+.azora-language-dropdown-menu {
+  display: none;
+  /* माउस जाने से पहले छुपा रहेगा */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* ट्रिगर बटन के ठीक नीचे सेंटर अलाइन करने के लिए */
+  background-color: #ffffff;
+  width: 240px;
+  /* अमेज़न जैसा सटीक संकरा साइज */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  padding: 14px 16px;
+  z-index: 99999;
+  /* अकाउंट मेन्यू के ऊपर या बराबर तैरने के लिए */
+  margin-top: -2px;
+  text-align: left;
+  /* टेक्स्ट को हमेशा लेफ्ट अलाइन रखेगा */
+}
+
+/* 🌟 जादू: जब यूजर बटन पर माउस (Hover) लाएगा, तब मेन्यू खुल जाएगा */
+.nav-item-language-dropdown:hover .azora-language-dropdown-menu {
+  display: block;
+}
+
+/* एरो (Triangle Arrow) जो मेन्यू के ऊपर नुकीला दिखता है */
+.azora-language-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+}
+
+/* सेक्शन टाइटल्स (Change language / Change currency) */
+.dropdown-section-title {
+  font-size: 0.8125rem;
+  /* 13px फॉन्ट */
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* रेडियो ऑप्शन की रो (Row) */
+.lang-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* गोल रेडियो बटन की बारीक स्टाइलिंग */
+.lang-radio-option input[type="radio"] {
+  margin: 0;
+  cursor: pointer;
+  accent-color: #e77600;
+  /* सेलेक्ट होने पर अमेज़न स्टाइल क्लासिक ऑरेंज/Teal ग्लो */
+}
+
+/* रेडियो बटन के बगल का टेक्स्ट */
+.radio-text {
+  font-size: 0.8125rem;
+  color: #333333;
+  font-weight: 400;
+}
+
+/* ऑप्शन पर होवर करने पर नीला रंग और अंडरलाइन */
+.lang-radio-option:hover .radio-text {
+  color: #0066c0;
+  text-decoration: underline;
+}
+
+/* बारीक ग्रे डिवाइडर लाइन्स */
+.dropdown-menu-divider {
+  height: 1px;
+  background-color: #e7e7e7;
+  margin: 12px 0;
+}
+
+/* क्लासिक नीले लिंक्स */
+.lang-link-blue {
+  color: #0066c0;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.lang-link-blue:hover {
+  color: #c45500;
+  /* होवर पर अमेज़न थीम शेड */
+  text-decoration: underline;
+}
+
+.see-all-link {
+  display: inline-block;
+  margin-top: 4px;
+  padding-left: 22px;
+  /* रेडियो बटन की सीध में लाने के लिए */
+}
+
+/* बॉटम लोकेशन नोट एरिया */
+.dropdown-lang-footer {
+  font-size: 0.75rem;
+  color: #111111;
+  line-height: 1.4;
+}
+
+.shopping-location-notice {
+  margin: 0 0 6px 0;
+}
+
+.shopping-location-notice strong {
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   AZORA CUSTOMER PRODUCT GRID & CARD PREMIUM STYLES
+   ========================================================================== */
+
+.customer-products-section {
+  max-width: 1500px;
+  margin: 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.products-section-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+/* 4-कॉलम का रिस्पॉन्सिव ग्रिड लेआउट */
+.customer-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* 🌟 सिंगल प्रोडक्ट कार्ड डिज़ाइन - FIXED HEIGHT ADDED HERE */
+.customer-product-card {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 440px;
+  /* 🌟 जादू: सभी कार्ड्स की कुल ऊंचाई अब एक बराबर सीधी लाइन में लॉक हो गई */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  box-sizing: border-box;
+}
+
+.customer-product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* बेस्ट सेラー / देश टैग */
+.product-badge-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #cc0c39;
+  /* अमेज़न डार्क रेड */
+  color: #ffffff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+/* 🌟 इमेज कंटेनर फिक्स साइज - FIXED CONTAINER HEIGHT */
+.product-card-img-container {
+  width: 100%;
+  height: 180px;
+  /* 🌟 फिक्स ऊंचाई ताकि कोई छोटी-बड़ी इमेज डिब्बे को ऊपर-नीचे न भगाए */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.product-card-img-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  /* इमेज खिंचेगी नहीं, सही अनुपात में रहेगी */
+  transition: transform 200ms ease;
+}
+
+.customer-product-card:hover .product-card-img-container img {
+  transform: scale(1.03);
+  /* माउस ले जाने पर हल्का सा ज़ूम */
+}
+
+/* कार्ड का टेक्स्ट एरिया */
+.product-card-info-box {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start;
+  /* सारा टेक्स्ट हमेशा ऊपर से सलीके से शुरू होगा */
+}
+
+.product-card-title-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111111;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* क्रोम और सफारी के लिए */
+  line-clamp: 2;
+  /* 🌟 जादू: ये स्टैंडर्ड प्रॉपर्टी यहाँ बीच में जोड़ दी */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 38px;
+  /* फिक्स हाइट ताकि कार्ड्स ऊपर-नीचे न हों */
+}
+
+/* रेटिंग्स */
+.product-card-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.stars-gold {
+  color: #ffa41c;
+  /* अमेज़न क्लासिक गोल्ड स्टार्स */
+  font-size: 0.85rem;
+  letter-spacing: -1px;
+}
+
+.rating-count-text {
+  font-size: 0.75rem;
+  color: #007185;
+  /* लिंक ब्लू */
+}
+
+/* प्राइसिंग स्टाइल */
+.product-card-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.currency-symbol {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #111111;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.actual-price-number {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111111;
+}
+
+.mrp-strike-price {
+  font-size: 0.75rem;
+  color: #565959;
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+/* प्राइम डिलीवरी बैच */
+.azora-prime-delivery-batch {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #00a8e1;
+  /* क्लासिक प्राइम充 ब्लू */
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.azora-prime-delivery-batch .checkmark-icon {
+  color: #ffa41c;
+  font-style: normal;
+  font-weight: 900;
+  margin-right: 2px;
+}
+
+/* 🌟 प्रीमियम पीला "Add to Cart" बटन - MARGIN-TOP AUTO UPDATED */
+.customer-add-to-cart-btn {
+  width: 100%;
+  background: #ffd814;
+  /* अमेज़न क्लासिक बटन येलो */
+  border: 1px solid #fcd200;
+  border-radius: 100px;
+  /* कैप्सूल शेप */
+  padding: 8px 0;
+  /* हल्का सा बेहतर पैडिंग */
+  font-size: 0.8125rem;
+  color: #0f1111;
+  cursor: pointer;
+  font-weight: 500;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(213, 217, 217, .5);
+  margin-top: auto;
+  /* 🌟 जादू: चाहे ऊपर नाम छोटा हो या बड़ा, यह बटन हमेशा कार्ड में सबसे नीचे एक सीध में लॉक रहेगा */
+  transition: background 150ms ease;
+}
+
+.customer-add-to-cart-btn:hover {
+  background: #f7ca00;
+  border-color: #f2c200;
+}
+
+.customer-add-to-cart-btn:active {
+  background: #f0b800;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) inset;
+}
+
+/* ==========================================================================
+   FIXED: HERO BANNER & CATEGORIES SPACING OVERLAP
+   ========================================================================== */
+
+/* 1. Hero/Banner Section - इसके नीचे हमने सेफ ब्रीथिंग स्पेस बना दिया है */
+.hero-slider-container,
+.hero-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px !important;
+}
+
+/* 2. Categories Section - नेगेटिव मार्जिन हटाकर इसे बैनर के ठीक नीचे परफेक्ट सेट किया */
+.categories-container,
+.categories-section-wrapper,
+.categories {
+  position: relative;
+  z-index: 2;
+  margin-top: 20px !important;
+  /* 🌟 जादू: इसके बाद बॉक्सेस बैनर को आधा नहीं छुपाएंगे */
+  padding: 0 20px;
+}
+
+
+/* ==========================================================================
+   2. MASTER MEDIA QUERIES (MACBOOK, TABLET & EVERY PHONE MODEL)
+   ========================================================================== */
+
+/* 💻 LAYER A: Large Screens & Apple MacBooks (1200px and above) */
+@media screen and (min-width: 1200px) {
+  .customer-products-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    /* मैकबुक/लैपटॉप पर एक कतार में परफेक्ट 4 कार्ड्स */
+  }
+}
+
+/* 🎯 LAYER B: Tablets, iPads & Small Laptops (769px to 1024px) */
+@media screen and (max-width: 1024px) {
+  .customer-products-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    /* टैबलेट की चौड़ाई के हिसाब से अपने आप 3 कार्ड्स की कतार */
+    gap: 15px !important;
+  }
+
+  .products-section-heading {
+    font-size: 1.3rem !important;
+  }
+}
+
+/* 📱 LAYER C: All Mobile Phone Models (iPhone, Samsung, Mi, etc. - 768px and below) */
+@media screen and (max-width: 768px) {
+
+  /* मुख्य कंटेनर की स्पेसिंग मोबाइल के हिसाब से सेट की */
+  .customer-products-section {
+    padding: 0 10px !important;
+    margin: 20px auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .products-section-heading {
+    font-size: 1.1rem !important;
+    margin-bottom: 12px !important;
+    padding-left: 4px !important;
+  }
+
+  /* 🌟 मोबाइल का असली अमेज़न स्टाइल: ग्रिड तुरंत 2 कॉलम में बदल जाएगा */
+  .customer-products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    /* एक लाइन में 2-2 प्रोडक्ट्स दिखेंगे */
+    gap: 8px !important;
+    /* मोबाइल पर सटाकर रखने के लिए कम गैप */
+    width: 100% !important;
+  }
+
+  /* मोबाइल पर कार्ड की बनावट को ऑटो-फ्लेक्स किया ताकि नाम कटे नहीं */
+  .customer-product-card {
+    height: 390px !important;
+    /* हर फोन मॉडल के हिसाब से डिब्बे की ऊंचाई लॉक */
+    padding: 10px !important;
+    border-radius: 4px !important;
+  }
+
+  /* मोबाइल स्क्रीन के लिए इमेज का डिब्बा छोटा किया */
+  .product-card-img-container {
+    height: 130px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* प्रोडक्ट का टाइटल टेक्स्ट मोबाइल पर साफ़ दिखने के लिए छोटा किया */
+  .product-card-title-text {
+    font-size: 0.78rem !important;
+    height: 34px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* रेटिंग्स और स्टार्स */
+  .product-card-rating-row {
+    gap: 4px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .stars-gold {
+    font-size: 0.75rem !important;
+  }
+
+  /* प्राइस का साइज फोन के हिसाब से परफेक्ट किया */
+  .actual-price-number {
+    font-size: 1.1rem !important;
+  }
+
+  .currency-symbol {
+    font-size: 0.75rem !important;
+  }
+
+  .mrp-strike-price {
+    font-size: 0.68rem !important;
+    margin-left: 4px !important;
+  }
+
+  /* प्राइम डिलीवरी बैच */
+  .azora-prime-delivery-batch {
+    font-size: 0.68rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* पीला "Add to Cart" बटन मोबाइल पर स्लिम और परफेक्ट फिट */
+  .customer-add-to-cart-btn {
+    padding: 6px 0 !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+  }
+}
+
+/* ==========================================================================
+   AZORA SUB-NAVBAR RE-BUILD & SIDEBAR COOPY STYLES (FINAL 100% FIXED)
+   ========================================================================== */
+
+/* 1. मुख्य सब-नेवबार का कंटेनर और अमेज़न डार्क ब्लू बैकग्राउंड कलर */
+.azora-master-sub-navbar {
+  background-color: #232f3e !important;
+  /* अमेज़न ओरिजिनल लाइट डार्क-ब्लू कलर */
+  width: 100% !important;
+  height: 40px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+  margin-bottom: 15px !important;
+  /* हीरो बैनर के बीच का परफेक्ट गैप */
+}
+
+/* लेफ्ट साइड के लिंक्स का ग्रुप */
+.azora-sub-nav-links-left-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  /* लिंक्स के बीच की अमेज़न स्पेसिंग */
+  height: 100% !important;
+}
+
+/* सिंगल लिंक का स्टाइल */
+.azora-sub-link-item {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  padding: 0 8px !important;
+  cursor: pointer !important;
+  transition: outline 100ms;
+}
+
+.azora-sub-link-item:hover {
+  outline: 1px solid #ffffff !important;
+  /* होवर करने पर सफ़ेद बॉर्डर बॉक्स */
+}
+
+/* ऑल ट्रिगर बटन का विशेष फॉन्ट वेट */
+.azora-all-trigger {
+  font-weight: 700 !important;
+  gap: 5px !important;
+}
+
+/* राइट साइड का प्रोमो टेक्स्ट ग्रुप */
+.azora-sub-nav-promo-right-group {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.azora-sub-promo-highlight-text {
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+/* 2. पीछे की पूरी वेबसाइट को धुंधला (Dim) करने के लिए लाइट-डार्क पर्दा */
+.azora-sidebar-backdrop-curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55) !important;
+  z-index: 9999 !important;
+}
+
+/* 3. मुख्य स्लाइडिंग साइडबार */
+.amazon-sliding-sidebar {
+  position: fixed;
+  top: 0;
+  left: -365px;
+  width: 365px;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 10000 !important;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  transition: left 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amazon-sliding-sidebar.open {
+  left: 0 !important;
+}
+
+/* साइडबार हेडर */
+.sidebar-user-header {
+  background-color: #232f3e;
+  color: #ffffff;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  min-height: 50px;
+}
+
+.user-avatar-circle {
+  font-size: 1.4rem;
+}
+
+.sidebar-user-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff !important;
+}
+
+/* क्लोज '✕' बटन */
+.sidebar-close-x-btn {
+  position: absolute;
+  top: 13px;
+  right: -40px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+/* स्क्रॉलेबल कंटेंट एरिया */
+.sidebar-menu-content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 0;
+}
+
+.sidebar-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111111;
+  padding: 10px 30px 5px 30px;
+}
+
+.sidebar-item-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  color: #444444 !important;
+  text-decoration: none !important;
+  font-size: 0.88rem;
+  font-weight: 400 !important;
+  transition: background-color 100ms;
+}
+
+.sidebar-item-link:hover {
+  background-color: #eaeded;
+  color: #111111 !important;
+}
+
+.sidebar-item-link span {
+  color: #888888;
+  font-size: 1rem;
+}
+
+.sidebar-divider-line {
+  border: 0;
+  height: 1px;
+  background: #e2e8f0;
+  margin: 15px 0;
+}
+
+/* 📱 मोबाइल रिस्पॉन्सिविटी (ताकि फोन पर भी न टूटे) */
+@media screen and (max-width: 768px) {
+  .azora-master-sub-navbar {
+    padding: 0 10px !important;
+  }
+
+  .azora-sub-nav-promo-right-group {
+    display: none !important;
+    /* छोटे फोन पर प्रोमो टेक्स्ट छुप जाएगा ताकि लिंक्स साफ दिखें */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .amazon-sliding-sidebar {
+    width: 290px;
+    left: -290px;
+  }
+
+  .sidebar-close-x-btn {
+    right: -35px;
+    font-size: 1.3rem;
+  }
+}
+
+/* 🌟 पीछे की वेबसाइट का स्क्रॉल जड़ से लॉक करने का मास्टर रूल */
+body.stop-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+  position: fixed !important;
+  /* मोबाइल और सफारी ब्राउज़र्स पर भी स्क्रॉल को पूरी तरह फ्रीज कर देगा */
+  width: 100% !important;
+}
+
+/* ==========================================================================
+   AZORA SELLER CENTRAL CENTRAL - DASHBOARD MASTER LAYOUT
+   ========================================================================== */
+
+.seller-dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* 1. सेलर साइडबार */
+.seller-sidebar {
+  width: 260px;
+  background-color: #131921;
+  /* अमेज़न डीप डार्क */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.seller-sidebar-brand {
+  padding: 20px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  border-bottom: 1px solid #232f3e;
+  letter-spacing: 0.5px;
+}
+
+.seller-sidebar-brand span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #febd69;
+  /* अमेज़न गोल्ड */
+  text-transform: uppercase;
+}
+
+.seller-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  gap: 5px;
+}
+
+.sidebar-menu-btn {
+  background: transparent;
+  border: none;
+  color: #cccccc;
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 150ms;
+}
+
+.sidebar-menu-btn:hover {
+  background-color: #232f3e;
+  color: #ffffff;
+}
+
+.sidebar-menu-btn.active {
+  background-color: #232f3e;
+  color: #febd69 !important;
+  font-weight: bold;
+  border-left: 4px solid #febd69;
+}
+
+/* 2. मुख्य कंटेंट एरिया */
+.seller-main-content {
+  flex: 1;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.seller-content-header {
+  margin-bottom: 25px;
+}
+
+.seller-content-header h2 {
+  font-size: 1.6rem;
+  color: #111111;
+  margin: 0 0 6px 0;
+}
+
+.seller-content-header p {
+  color: #666666;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* बिज़नेस कार्ड्स ग्रिड */
+.seller-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.stat-icon.yellow {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.stat-icon.teal {
+  background-color: #ccfbf1;
+  color: #0d9488;
+}
+
+.stat-icon.blue {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.stat-info h3 {
+  font-size: 1.4rem;
+  margin: 0 0 2px 0;
+  color: #111111;
+}
+
+.stat-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+/* इन्वेंटरी और ऑर्डर्स टेबल सेक्शन */
+.seller-inventory-section {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.section-block-title {
+  font-size: 1.15rem;
+  margin: 0 0 20px 0;
+  color: #111111;
+  font-weight: 700;
+}
+
+.seller-inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.seller-inventory-table th {
+  background-color: #f8fafc;
+  padding: 14px;
+  color: #475569;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.seller-inventory-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.prod-title-cell {
+  font-weight: 600;
+  color: #111111;
+}
+
+.price-cell {
+  font-weight: 700;
+  color: #111111;
+}
+
+/* स्टॉक बैज */
+.stock-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.stock-badge.in-stock {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.stock-badge.out-of-stock {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* 🌟 Option 2: एक्शन बटन ग्रुप */
+.seller-action-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.seller-action-btn {
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.seller-action-btn.edit {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.seller-action-btn.edit:hover {
+  background-color: #dbeafe;
+}
+
+.seller-action-btn.delete {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+.seller-action-btn.delete:hover {
+  background-color: #fee2e2;
+}
+
+/* 🌟 Option 3: ऑर्डर्स विशेष डिज़ाइन */
+.order-id-cell {
+  color: #2563eb;
+}
+
+.order-cust-name {
+  font-weight: 600;
+  color: #111111;
+}
+
+.order-cust-addr {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.order-qty-badge {
+  background-color: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: bold;
+}
+
+.order-status-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.order-status-label.pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.order-status-label.shipped {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.order-status-label.delivered {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.order-status-select-dropdown {
+  padding: 6px;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+/* फॉर्म डिज़ाइन */
+.seller-form-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 25px;
+}
+
+.dashboard-form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.dashboard-form-row.two-col {
+  flex-direction: row;
+  gap: 20px;
+}
+
+.dashboard-form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dashboard-form-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.dashboard-form-group input,
+.dashboard-form-group select,
+.dashboard-form-group textarea {
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+.seller-submit-pula-btn {
+  background-color: #f0c14b;
+  border: 1px solid #a88734;
+  color: #111111;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset;
+}
+
+.seller-submit-pula-btn:hover {
+  background-color: #ddb347;
+}
+
+/* एनीमेशन */
+.animate-fade {
+  animation: fadeIn 200ms ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   AZORA SELLER MASTER SUPPORT CENTER PANEL STYLES
+   ========================================================================== */
+
+.support-center-card {
+  max-width: 600px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 10px !important;
+}
+
+.support-header-icon {
+  font-size: 3.5rem;
+  color: #febd69;
+  /* अमेज़न सिग्नेचर गोल्ड */
+  margin-bottom: 15px;
+}
+
+.support-info-box {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 15px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+}
+
+.support-info-box h4 {
+  margin: 0 0 8px 0;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.support-info-box ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #475569;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.support-email-btn {
+  background-color: #232f3e !important;
+  color: #ffffff !important;
+  border: 1px solid #131921 !important;
+  transition: background-color 150ms;
+}
+
+.support-email-btn:hover {
+  background-color: #131921 !important;
+}
+
+/* Return & Refund status styling */
+.order-status-label.return-requested {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.order-status-label.refund-approved {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.order-status-label.return-rejected {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+/* amazon ke return item ka preview*/
+.seller-return-img-preview-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.seller-table-mini-img {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+}
+
+.seller-view-img-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.seller-action-btn.fraud-report-btn {
+  background-color: #fff7ed !important;
+  color: #c2410c !important;
+  border: 1px solid #ffedd5 !important;
+  width: 100%;
+  justify-content: center;
+}
+
+.order-status-label.fraud-disputed-\(frozen\) {
+  background-color: #7f1d1d !important;
+  color: #ffffff !important;
+}
+
+
+/* ==========================================================================
+   AZORA PREMIUM PURE AMAZON REGISTER SCREEN STYLES
+   ========================================================================== */
+
+.amazon-register-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: "Amazon Ember", Arial, sans-serif;
+  padding-top: 20px;
+}
+
+.amazon-register-content-wrapper {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* अमेज़न का सिंपल ब्लैक लोगो */
+.amazon-auth-logo {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #111111;
+  cursor: pointer;
+  margin-bottom: 15px;
+  letter-spacing: -1.5px;
+}
+
+/* मुख्य अमेज़न कार्ड बॉक्स */
+.amazon-auth-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px 26px;
+  box-sizing: border-box;
+}
+
+.amazon-auth-card h1 {
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin: 0 0 14px 0;
+  color: #111111;
+}
+
+.amazon-otp-sub-p {
+  font-size: 0.82rem;
+  color: #111111;
+  line-height: 1.4;
+  margin: 0 0 15px 0;
+}
+
+/* एरर बॉक्स */
+.amazon-alert-danger {
+  background: #fff;
+  border: 1px solid #c40000;
+  border-radius: 4px;
+  color: #c40000;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.amazon-pure-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.amazon-pure-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.amazon-pure-group label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #111111;
+}
+
+.amazon-pure-group input {
+  width: 100%;
+  padding: 6px 9px;
+  font-size: 0.88rem;
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  outline: none;
+  box-sizing: border-box;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07) inset;
+}
+
+.amazon-pure-group input:focus {
+  border-color: #e77600;
+  box-shadow: 0 0 3px #e77600;
+}
+
+/* 🌐 कंट्री कोड ड्रॉपडाउन रो लेआउट */
+.amazon-input-row-layout {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+  position: relative;
+}
+
+.amazon-country-select-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  background: #f0f2f2;
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  padding: 0 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  min-width: 80px;
+  height: 33px;
+  box-sizing: border-box;
+}
+
+.amazon-country-select-box:hover {
+  background: #e3e6e6;
+}
+
+.amazon-country-dropdown-list {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  background: white;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 220px;
+}
+
+.dropdown-item-row {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  color: #111111;
+  cursor: pointer;
+}
+
+.dropdown-item-row:hover {
+  background-color: #f0f2f2;
+}
+
+.amazon-hint-text {
+  font-size: 0.75rem;
+  color: #111111;
+  margin-top: 2px;
+}
+
+/* अमेज़न गोल्डन बटन */
+.amazon-gold-action-btn {
+  background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+  border: 1px solid #a88734;
+  border-radius: 3px;
+  color: #111111;
+  padding: 7px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  margin-top: 5px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset;
+}
+
+.amazon-gold-action-btn:hover {
+  background: linear-gradient(to bottom, #f5d78e, #eeb933);
+  border-color: #846a29;
+}
+
+.amazon-legal-notice-txt {
+  font-size: 0.72rem;
+  color: #555;
+  line-height: 1.4;
+  margin-top: 15px;
+}
+
+.link-style {
+  color: #0066c0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link-style:hover {
+  color: #c45500;
+  text-decoration: underline;
+}
+
+.amazon-divider-thin {
+  height: 1px;
+  background-color: #e7e7e7;
+  margin: 20px 0;
+}
+
+.amazon-switch-auth-row {
+  font-size: 0.82rem;
+  color: #111111;
+}
+
+/* ओटीपी एक्स्ट्रा */
+.amazon-otp-resend-link {
+  font-size: 0.82rem;
+  color: #0066c0;
+  cursor: pointer;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.amazon-otp-resend-link:hover {
+  color: #c45500;
+  text-decoration: underline;
+}
+
+/* व्हाट्सएप सेक्शन */
+.or-line-separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 15px 0;
+  color: #767676;
+  font-size: 0.75rem;
+}
+
+.or-line-separator::before,
+.or-line-separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.or-line-separator span {
+  padding: 0 8px;
+}
+
+.amazon-whatsapp-btn {
+  background: #ffffff;
+  border: 1px solid #adb1b8;
+  border-radius: 3px;
+  color: #111111;
+  width: 100%;
+  padding: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+.amazon-whatsapp-btn:hover {
+  background: #f7f8fa;
+  border-color: #a2a6ac;
+}
+
+/* 🌟 शानदार सक्सेस बॉक्स डिज़ाइन */
+.amazon-success-box {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #14532d;
+  border-radius: 8px;
+  padding: 22px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.success-header-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.green-check-icon {
+  font-size: 1.8rem;
+  color: #16a34a;
+}
+
+.success-header-row h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #14532d;
+  margin: 0;
+}
+
+.amazon-success-box p {
+  font-size: 0.85rem;
+  color: #166534;
+  line-height: 1.4;
+  margin: 0 0 18px 0;
+}
+
+.amazon-start-shopping-btn {
+  background: linear-gradient(to bottom, #22c55e, #16a34a);
+  border: 1px solid #15803d;
+  border-radius: 4px;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   AZORA PREMIUM SELLER REGISTER PAGE - THEMED COMPLETE STYLES (7 SECTIONS)
+   ========================================================================== */
+
+.azora-seller-reg-page {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+/* 🌟 शीर्ष वीआईपी एडमिन अप्रूवल बैनर */
+.azora-top-approval-sidebar {
+  width: 100%;
+  max-width: 100%;
+  background-color: #ecfdf5;
+  /* लाइट ग्रीन */
+  border-bottom: 3px solid #10b981;
+  /* कड़क सक्सेस ग्रीन */
+  padding: 16px 24px;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.14);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.sidebar-approval-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #065f46;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.spin-clock {
+  font-size: 1.4rem;
+  animation: fa-spin-data 3s linear infinite;
+}
+
+@keyframes fa-spin-data {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* सिंगल पेज वर्टिकल लॉन्ग लेआउट */
+.amazon-single-page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.amazon-merchant-wide-card {
+  max-width: 480px !important;
+}
+
+.form-top-notice {
+  font-size: 0.85rem;
+  color: #555555;
+  margin: -8px 0 20px 0;
+  line-height: 1.4;
+}
+
+.label-hint {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: normal;
+}
+
+.input-err-border {
+  border: 1px solid #dc2626 !important;
+  background-color: #fff5f5 !important;
+}
+
+.error-hint-txt {
+  font-size: 0.75rem;
+  color: #dc2626;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* 🌟 आपके फ्रंट पेज के हिसाब से कस्टमाइज्ड ग्रैडिएंट बटन (Theme Matched) */
+.amazon-gold-action-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  /* कड़क सियान/लाइट-ब्लू प्रीमियम लुक */
+  border: 1px solid #047857;
+  border-radius: 4px;
+  color: #ffffff !important;
+  padding: 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(4, 120, 87, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.amazon-gold-action-btn:hover {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  box-shadow: 0 4px 10px rgba(4, 120, 87, 0.3);
+}
+
+.section-sub-heading-txt {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 8px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* अपलोड डॉक डिब्बे */
+.upload-box-row {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.upload-box-row label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.upload-box-row input {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 4px 0 !important;
+  cursor: pointer;
+}
+
+.file-success-badge {
+  font-size: 0.78rem;
+  color: #10b981;
+  font-weight: 800;
+  margin-top: 4px;
+  display: block;
+}
+
+/* 🌟 लाइव कैमरा रोटेशन HUD सर्कल (Theme Matched Border) */
+.camera-verification-block {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.camera-verification-block label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.live-camera-circle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.camera-guideline-circle {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  background-color: #000;
+}
+
+/* 🌟 फेस के चारों तरफ बनने वाले बॉर्डर का कलर आपकी थीम के अनुसार */
+.camera-guideline-circle.align {
+  border: 6px solid #10b981;
+}
+
+/* थीड अलाइनमेंट */
+.camera-guideline-circle.rotate {
+  border: 6px solid #f97316;
+  animation: boundary-pulse 1s infinite alternate;
+}
+
+/* रोटेशन वार्निंग */
+.camera-guideline-circle.success {
+  border: 6px solid #10b981;
+}
+
+/* सक्सेस ग्रीन */
+
+@keyframes boundary-pulse {
+  from {
+    border-width: 6px;
+  }
+
+  to {
+    border-width: 9px;
+  }
+}
+
+.live-video-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.face-zoom {
+  transform: scale(1.18);
+}
+
+.circle-overlay-instruction {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.inst-txt {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.inst-txt.text-blue {
+  background-color: #10b981;
+}
+
+.inst-txt.text-orange {
+  background-color: #f97316;
+  font-size: 0.75rem;
+}
+
+.inst-txt.text-green {
+  background-color: #10b981;
+}
+
+.camera-status-legend {
+  margin-top: 12px;
+}
+
+.status-desc {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.status-desc.warning-alert {
+  color: #ea580c;
+  font-weight: bold;
+}
+
+.status-desc.success-alert {
+  color: #047857;
+  font-weight: bold;
+}
+
+.back-mini-link-btn {
+  background: none;
+  border: none;
+  color: #10b981;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-align: left;
+}
+
+.back-mini-link-btn:hover {
+  color: #047857;
+  text-decoration: underline;
+}
+
+.pending-notice-card {
+  background-color: #f8fafc;
+  border-left: 4px solid #0f172a;
+  padding: 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.pending-notice-card p {
+  color: #334155 !important;
+  font-size: 0.82rem !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* ==========================================================================
+   AZORA SUPREME AUTHORITY MASTER CONTROL ROOM PANEL - COMPLETE COMBINED CSS
+   ========================================================================== */
+
+/* 1. मुख्य लेआउट ढांचा (लेफ्ट साइडबार को पूरी स्क्रीन पर लॉक और फिक्स करने के लिए) */
+.admin-dashboard-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  /* पूरी स्क्रीन की हाइट पर ढांचा पूरी तरह लॉक */
+  overflow: hidden;
+  /* बाहरी अनचाहा हॉरिजॉन्टल स्क्रॉल बिल्कुल बंद */
+  background-color: #f8fafc;
+  /* प्रीमियम लाइट ग्रे बैकग्राउंड */
+  font-family: system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+}
+
+/* 2. प्रीमियम डार्क साइडबार (पूरी तरह से एक जगह जाम - FIXED POSITION PANEL) */
+.admin-sidebar {
+  width: 260px;
+  height: 100vh;
+  /* साइडबार हमेशा 100% स्क्रीन हाइट घेरेगा */
+  background-color: #0f172a;
+  /* रॉयल स्लेट ब्लैक */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  /* 🟢 मैजिक लाइन: साइडबार को सिकुड़ने या हिलने से रोकेगा */
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.admin-sidebar-brand {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 35px;
+  letter-spacing: -0.5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sidebar-brand span {
+  font-size: 0.72rem;
+  color: #38bdf8;
+  /* शानदार स्काई ब्लू टोकन */
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.admin-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* साइडबार मेनू बटन्स */
+.admin-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.admin-menu-btn:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.admin-menu-btn.active {
+  background-color: #38bdf8;
+  /* एक्टिव होने पर कड़क ब्लू रंग */
+  color: #ffffff;
+}
+
+/* 3. मुख्य कंटेंट स्पेस (सिर्फ यही सेक्शन वर्टिकली स्क्रॉल होगा) */
+.admin-main-content {
+  flex-grow: 1;
+  height: 100vh;
+  overflow-y: auto;
+  /* 🟢 मैजिक लाइन: सिर्फ राइट साइड का बड़ा वाइट बॉक्स ही नीचे स्क्रॉल होगा */
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.admin-content-header {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.admin-content-header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.admin-content-header p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 6px 0 0 0;
+}
+
+.admin-block-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 20px 0;
+  text-align: left;
+}
+
+/* 4. टाइम-बेस्ड रजिस्ट्रेशन ट्रैकर ग्रिड */
+.admin-time-tracker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.tracker-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+  display: flex;
+  flex-direction: column;
+}
+
+.tracker-card-header {
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+/* अलग-अलग कार्ड्स की प्रीमियम थीम्स */
+.customer-theme {
+  border-top: 4px solid #2563eb;
+}
+
+.customer-theme .tracker-card-header {
+  color: #2563eb;
+}
+
+.seller-theme {
+  border-top: 4px solid #0d9488;
+}
+
+.seller-theme .tracker-card-header {
+  color: #0d9488;
+}
+
+.money-green-theme {
+  border-top: 4px solid #16a34a;
+  background-color: #f0fdf4;
+  color: #14532d;
+}
+
+.money-green-theme .tracker-card-header {
+  color: #16a34a;
+}
+
+.money-blue-theme {
+  border-top: 4px solid #2563eb;
+  background-color: #eff6ff;
+  color: #1e3a8a;
+}
+
+.money-blue-theme .tracker-card-header {
+  color: #2563eb;
+}
+
+.tracker-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: 8px 0;
+  border-bottom: 1px dashed #f1f5f9;
+  color: #475569;
+}
+
+.money-green-theme .tracker-row,
+.money-blue-theme .tracker-row {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+  color: inherit;
+}
+
+.tracker-row b {
+  color: #0f172a;
+}
+
+.money-green-theme .tracker-row b,
+.money-blue-theme .tracker-row b {
+  color: inherit;
+}
+
+.tracker-footer-total {
+  margin-top: 18px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-align: right;
+}
+
+.money-green-theme .tracker-footer-total,
+.money-blue-theme .tracker-footer-total {
+  color: inherit;
+}
+
+/* 5. क्विक मिनी स्टेट्स रो (0-स्टेट बॉक्सेस) */
+.admin-quick-stats-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-mini-stat {
+  flex: 1;
+  min-width: 220px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.admin-mini-stat h4 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.admin-mini-stat p {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* 6. मास्टर टेबल्स डिज़ाइन (Tables Style) */
+.admin-section-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-master-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.admin-master-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  padding: 14px 16px;
+  border-bottom: 2px solid #e2e8f0;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+}
+
+.admin-master-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.admin-master-table tr:hover td {
+  background-color: #f8fafc;
+}
+
+.bold-text {
+  font-weight: 700;
+  color: #0f172a !important;
+}
+
+/* सिस्टम सीक्रेट पासवर्ड बैच */
+.admin-password-badge {
+  background-color: #fef3c7;
+  color: #d97706;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  border: 1px solid #fde68a;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* सिस्टम रिस्पॉन्सिव बैजेस */
+.admin-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.admin-badge.approved {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.admin-badge.pending-approval {
+  background-color: #ffedd5;
+  color: #c2410c;
+}
+
+/* एक्शन बटन्स स्टाइल्स */
+.admin-action-btn,
+.admin-doc-review-btn,
+.admin-table-btn {
+  border: none;
+  padding: 7px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.admin-action-btn.view-profile {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.admin-action-btn.view-profile:hover {
+  background-color: #dbeafe;
+}
+
+.admin-doc-review-btn {
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+}
+
+.admin-doc-review-btn:hover {
+  background-color: #e0f2fe;
+}
+
+.admin-table-btn.reject {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fee2e2;
+}
+
+.admin-table-btn.reject:hover {
+  background-color: #fee2e2;
+}
+
+/* 7. डाक्यूमेंट्स रिव्यू वॉल्ट तिजोरी */
+.admin-doc-vault-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  text-align: left;
+}
+
+.vault-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.vault-logo {
+  font-size: 2.8rem;
+  color: #0f172a;
+}
+
+.vault-header h3 {
+  font-size: 0.8rem;
+  color: #2563eb;
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
+  font-weight: 800;
+}
+
+.vault-header h2 {
+  font-size: 1.4rem;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+  font-weight: 800;
+}
+
+.vault-header p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* सातों सेक्शंस की डिटेल्स का ग्रिड */
+.seller-submitted-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 20px;
+}
+
+.info-box-item {
+  font-size: 0.84rem;
+  color: #475569;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.info-box-item span {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.info-box-item b {
+  background: #ffffff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 0.88rem;
+  font-family: inherit;
+}
+
+/* 3-फोटो कॉम्बो ग्रिड (PAN, GST, Selfie) */
+.vault-docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.doc-review-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: left;
+}
+
+.doc-review-card h4 {
+  margin: 0 0 12px 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.doc-image-preview-container {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.doc-image-preview-container img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.zoom-btn {
+  background: #f1f5f9;
+  border: none;
+  padding: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475569;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.zoom-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.vault-judgment-footer {
+  background: #fff7ed;
+  border: 1px solid #ffedd5;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+}
+
+.vault-judgment-footer h3 {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+  color: #c2410c;
+  font-weight: 800;
+}
+
+.judgment-btn-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.judgment-btn {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: white;
+}
+
+.judgment-btn.approve-btn {
+  background-color: #16a34a;
+}
+
+.judgment-btn.approve-btn:hover {
+  background-color: #15803d;
+}
+
+.judgment-btn.reject-btn {
+  background-color: #dc2626;
+}
+
+.judgment-btn.reject-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* 8. सेलर और कस्टमर डीप कुंडली प्रोफाइल व्यू कार्ड */
+.admin-seller-full-profile-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  text-align: left;
+}
+
+.profile-main-header {
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 18px;
+  margin-bottom: 25px;
+}
+
+.profile-main-header h3 {
+  font-size: 0.82rem;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.profile-main-header h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.profile-main-header p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #64748b;
+}
+
+.profile-deep-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.metric-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.metric-box .m-icon {
+  font-size: 2.2rem;
+  opacity: 0.3;
+}
+
+.metric-box h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 2px 0;
+  line-height: 1.1;
+}
+
+.metric-box p {
+  font-size: 0.78rem;
+  margin: 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* कुंडली डिब्बों के कस्टमाइज्ड कलर्स */
+.box-blue {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.box-green {
+  background: linear-gradient(135deg, #10b981, #047857);
+}
+
+.box-gold {
+  background: linear-gradient(135deg, #f59e0b, #b45309);
+}
+
+.box-pink {
+  background: linear-gradient(135deg, #ec4899, #be185d);
+}
+
+.box-orange {
+  background: linear-gradient(135deg, #f97316, #c2410c);
+}
+
+.box-teal {
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+}
+
+.customer-full-address-panel h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.address-box-txt {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+/* बैक बटन */
+.admin-back-btn {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.admin-back-btn:hover {
+  color: #0f172a;
+}
+
+/* एनीमेशन इफ़ेक्ट */
+.animate-fade {
+  animation: adminFade 200ms ease-in-out;
+}
+
+@keyframes adminFade {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   AZORA MASTER CONTROL PANEL - CUSTOMER SECTIONS & TAB FIX EXTENSIONS
+   ========================================================================== */
+
+/* कस्टमर प्रोफाइल के लिए सेलर जैसा शानदार अवतार */
+.custom-avatar-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #0f172a;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+  flex-shrink: 0;
+}
+
+/* टेबल के अंदर इमेज प्रीव्यू थंबनेल */
+.admin-table-preview-img {
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.admin-table-preview-img:hover {
+  transform: scale(1.4);
+  z-index: 100;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* नो पेंडिंग रिक्वेस्ट बॉक्स अलर्ट */
+.no-pending-requests-box {
+  background-color: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 50px 30px;
+  text-align: center;
+  color: #64748b;
+  margin: 20px 0;
+}
+
+.no-pending-requests-box h3 {
+  margin: 0 0 8px 0;
+  color: #0f172a;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.no-pending-requests-box p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   CUST REGISTER ISOLATION STYLES (ANTI-COLLISION FORCING)
+   ========================================================================== */
+.cust-reg-isolated-page .cust-card-box-unique {
+  max-width: 350px !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.cust-reg-isolated-page .cust-input-field-unique {
+  height: 34px !important;
+  border: 1px solid #a6a6a6 !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+}
+
+.cust-reg-isolated-page .cust-btn-gold-unique {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border: 1px solid #047857 !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.cust-reg-isolated-page .cust-success-banner-unique {
+  display: block !important;
+  border: 1px solid #047857 !important;
+}
+
+/* ==========================================================================
+   AZORA MERCHANT CENTRAL DASHBOARD EXTENSIONS
+   ========================================================================== */
+.seller-status-sidebar-box {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) inset;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
 }

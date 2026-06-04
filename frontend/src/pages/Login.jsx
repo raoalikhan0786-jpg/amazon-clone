@@ -51,7 +51,7 @@ const Login = () => {
                         />
                     </div>
 
-                    {/* पासवर्ड इनपुट फील्ड */}
+                    {/* पासवर्ड इनपुट field */}
                     <div className="auth-input-group">
                         <label className="auth-input-label">Enter Password</label>
                         <input
@@ -63,7 +63,7 @@ const Login = () => {
                         />
                     </div>
 
-                    {/* अमेज़न स्टाइल चमकीला पीला/ Teal बटन सबमिट करने के लिए */}
+                    {/* अमेज़न स्टाइल चमकीला पीला/Teal बटन सबमिट करने के लिए */}
                     <button type="submit" className="auth-submit-yellow-btn">
                         Continue
                     </button>
@@ -80,7 +80,7 @@ const Login = () => {
                     <a href="#need-help">Need help?</a>
                 </div>
 
-                {/* बिजनेस अकाउंट के लिए एक्स्ट्रा इन्फो (जैसा आपकी फोटो में है) */}
+                {/* बिजनेस अकाउंट के लिए एक्स्ट्रा इन्फो */}
                 <div className="auth-divider-line-thin"></div>
                 <div className="auth-business-promo-section">
                     <p className="business-bold-txt">Buying for work?</p>
@@ -94,13 +94,14 @@ const Login = () => {
                 <div className="prompt-divider-with-text">
                     <span>New to Azora?</span>
                 </div>
-                {/* रजिस्ट्रेशन पेज पर जाने के लिए React Router का लिंक */}
+
+                {/* 👤 100% फिक्स: अब यह राउट App.jsx के नए बदलाव के कारण सीधे कस्टमर वाले रजिस्ट्रेशन पेज पर ही लैंड करेगा! */}
                 <Link to="/register" className="auth-create-account-gray-btn">
                     Create your Azora account
                 </Link>
             </div>
 
-            {/* 4. फुटर एरिया (बारीक लिंक्स और आपका नया 2026 कॉपीराइट) */}
+            {/* 4. फुटर एरिया */}
             <div className="auth-page-mini-footer">
                 <div className="mini-footer-links">
                     <a href="#conditions">Conditions of Use</a>
@@ -108,7 +109,6 @@ const Login = () => {
                     <a href="#help">Help</a>
                 </div>
                 <p className="mini-footer-copyright-txt">
-                    {/* 🌟 यहाँ पर सिर्फ 2026 कर दिया गया है क्योंकि Azora की शुरुआत यहीं से है */}
                     &copy; 2026, Azora.com, Inc. or its affiliates
                 </p>
             </div>
