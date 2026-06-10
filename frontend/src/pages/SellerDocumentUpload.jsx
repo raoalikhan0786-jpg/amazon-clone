@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-    FaArrowLeft, FaCheckCircle, FaTimesCircle, FaCamera, 
+import {
+    FaArrowLeft, FaCheckCircle, FaTimesCircle, FaCamera,
     FaUpload, FaFileAlt, FaIdCard, FaUserCheck, FaSpinner,
     FaRedo, FaTrash
 } from "react-icons/fa";
@@ -10,13 +10,13 @@ const SellerDocumentUpload = () => {
     const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
-    
+
     // Document States
     const [panCard, setPanCard] = useState(null);
     const [panPreview, setPanPreview] = useState(null);
     const [gstinCert, setGstinCert] = useState(null);
     const [gstinPreview, setGstinPreview] = useState(null);
-    
+
     // Selfie States
     const [selfieImage, setSelfieImage] = useState(null);
     const [selfieStep, setSelfieStep] = useState(1);
@@ -25,11 +25,11 @@ const SellerDocumentUpload = () => {
         headRotate: false,
         selfieCaptured: false
     });
-    
+
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
     const streamRef = useRef(null);
-    
+
     // Camera Setup
     useEffect(() => {
         if (step === 3 && !selfieImage) {
@@ -39,7 +39,7 @@ const SellerDocumentUpload = () => {
             stopCamera();
         };
     }, [step, selfieImage]);
-    
+
     const startCamera = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -52,14 +52,14 @@ const SellerDocumentUpload = () => {
             alert("Unable to access camera. Please check permissions.");
         }
     };
-    
+
     const stopCamera = () => {
         if (streamRef.current) {
             streamRef.current.getTracks().forEach(track => track.stop());
             streamRef.current = null;
         }
     };
-    
+
     // Handle File Upload
     const handlePanUpload = (e) => {
         const file = e.target.files[0];
@@ -68,7 +68,7 @@ const SellerDocumentUpload = () => {
             setPanPreview(URL.createObjectURL(file));
         }
     };
-    
+
     const handleGstinUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -76,7 +76,7 @@ const SellerDocumentUpload = () => {
             setGstinPreview(URL.createObjectURL(file));
         }
     };
-    
+
     // Capture Selfie
     const captureSelfie = () => {
         if (videoRef.current && canvasRef.current) {
@@ -90,14 +90,14 @@ const SellerDocumentUpload = () => {
             stopCamera();
         }
     };
-    
+
     // Retake Selfie
     const retakeSelfie = () => {
         setSelfieImage(null);
         setVerificationStatus(prev => ({ ...prev, selfieCaptured: false }));
         startCamera();
     };
-    
+
     // Reset all verifications (retake all steps)
     const resetAllVerifications = () => {
         setSelfieImage(null);
@@ -109,7 +109,7 @@ const SellerDocumentUpload = () => {
         setSelfieStep(1);
         startCamera();
     };
-    
+
     // Simulate Neck Rotate Verification
     const verifyNeckRotate = () => {
         setLoading(true);
@@ -120,7 +120,7 @@ const SellerDocumentUpload = () => {
             alert("✅ Neck rotation verified! Now please rotate your head left and right.");
         }, 1500);
     };
-    
+
     // Simulate Head Rotate Verification
     const verifyHeadRotate = () => {
         setLoading(true);
@@ -130,21 +130,21 @@ const SellerDocumentUpload = () => {
             alert("✅ Head rotation verified! Now capture your selfie.");
         }, 1500);
     };
-    
-    // Final Submit - ✅ FIXED: Ab approval pending page par jayega
+
+    // 🌟🌟🌟 FINAL SUBMIT - DATA SAVE IN BOTH sessionStorage AND localStorage 🌟🌟🌟
     const handleFinalSubmit = () => {
         if (!panCard || !gstinCert || !selfieImage) {
             alert("Please complete all steps including document uploads and selfie verification.");
             return;
         }
-        
+
         if (!verificationStatus.neckRotate || !verificationStatus.headRotate || !verificationStatus.selfieCaptured) {
             alert("Please complete the live selfie verification process.");
             return;
         }
-        
+
         setLoading(true);
-        
+
         const sellerBasicInfo = JSON.parse(sessionStorage.getItem("sellerBasicInfo") || "{}");
         const completeSellerData = {
             ...sellerBasicInfo,
@@ -154,16 +154,59 @@ const SellerDocumentUpload = () => {
             verificationCompleted: true,
             verificationStatus: verificationStatus
         };
+
+        // Save to sessionStorage
         sessionStorage.setItem("completeSellerData", JSON.stringify(completeSellerData));
-        
+
+        // 🌟 ALSO SAVE TO localStorage for admin dashboard persistence
+        localStorage.setItem("completeSellerData", JSON.stringify(completeSellerData));
+        localStorage.setItem("sellerBasicInfo", JSON.stringify(sellerBasicInfo));
+
+        // 🌟 Create admin-friendly seller data
+        const adminSellerData = {
+            id: "SEL-" + Math.floor(Math.random() * 1000),
+            name: completeSellerData.storeName || sellerBasicInfo.storeName || "New Store",
+            owner: completeSellerData.ownerName || sellerBasicInfo.ownerName || "Unknown",
+            email: completeSellerData.contactInput || sellerBasicInfo.contactInput || "no-email@example.com",
+            phone: completeSellerData.contactInput || sellerBasicInfo.contactInput || "N/A",
+            joinedDate: new Date().toLocaleDateString(),
+            totalProductsListed: 0,
+            itemsSold: 0,
+            totalSalesValue: "0",
+            wishlistCount: 0,
+            cartCount: 0,
+            successfulDeliveries: 0,
+            status: "Pending Approval",
+            documents: {
+                ownerName: completeSellerData.ownerName || sellerBasicInfo.ownerName,
+                storeName: completeSellerData.storeName || sellerBasicInfo.storeName,
+                mobile: completeSellerData.contactInput || sellerBasicInfo.contactInput,
+                email: completeSellerData.contactInput || sellerBasicInfo.contactInput,
+                panNumber: completeSellerData.panNumber || sellerBasicInfo.panNumber,
+                gstin: completeSellerData.gstinNumber || sellerBasicInfo.gstinNumber,
+                bankAccount: completeSellerData.bankAccount || sellerBasicInfo.bankAccount,
+                ifscCode: completeSellerData.ifscCode || sellerBasicInfo.ifscCode,
+                gstCertImage: completeSellerData.gstinCert || panPreview,
+                panImage: completeSellerData.panCard || panPreview,
+                selfieImage: completeSellerData.selfieImage || selfieImage
+            }
+        };
+
+        // 🌟 Save admin sellers list to localStorage
+        const existingSellers = JSON.parse(localStorage.getItem("adminSellersList") || "[]");
+        existingSellers.push(adminSellerData);
+        localStorage.setItem("adminSellersList", JSON.stringify(existingSellers));
+
+        console.log("✅ Seller data saved:", adminSellerData);
+        console.log("✅ Admin sellers list:", existingSellers);
+
         setTimeout(() => {
             setLoading(false);
             alert("✅ Congratulations! Your seller application has been submitted successfully!");
-            // 🔴 CHANGE: Direct dashboard nahi, approval pending page par jayega
             navigate("/seller/approval-pending");
         }, 1500);
     };
-    
+
     const goBack = () => {
         if (step > 1) {
             setStep(step - 1);
@@ -171,14 +214,14 @@ const SellerDocumentUpload = () => {
             navigate("/seller/register");
         }
     };
-    
+
     return (
         <div className="azora-auth-page-wrapper" style={{ padding: "30px 10px", minHeight: "100vh" }}>
             <div className="auth-card-box" style={{ width: "100%", maxWidth: "700px", border: "1px solid #ccc" }}>
-                
+
                 {/* Header with Back Button */}
                 <div style={{ display: "flex", alignItems: "center", marginBottom: "20px", borderBottom: "1px solid #eee", paddingBottom: "15px" }}>
-                    <button 
+                    <button
                         onClick={goBack}
                         style={{ background: "none", border: "none", cursor: "pointer", marginRight: "15px", fontSize: "1.2rem", color: "#0066c0" }}
                     >
@@ -190,14 +233,14 @@ const SellerDocumentUpload = () => {
                         {step === 3 && "📸 Step 3: Live Selfie Verification"}
                     </h2>
                 </div>
-                
+
                 {/* Progress Bar */}
                 <div style={{ display: "flex", marginBottom: "30px", gap: "10px" }}>
                     <div style={{ flex: 1, height: "4px", background: step >= 1 ? "#ff9900" : "#ddd", borderRadius: "2px" }}></div>
                     <div style={{ flex: 1, height: "4px", background: step >= 2 ? "#ff9900" : "#ddd", borderRadius: "2px" }}></div>
                     <div style={{ flex: 1, height: "4px", background: step >= 3 ? "#ff9900" : "#ddd", borderRadius: "2px" }}></div>
                 </div>
-                
+
                 {/* Step 1: PAN Card Upload */}
                 {step === 1 && (
                     <div className="animate-fade">
@@ -208,7 +251,7 @@ const SellerDocumentUpload = () => {
                                 (Allowed formats: JPG, PNG - Max 5MB)
                             </p>
                         </div>
-                        
+
                         <div className="upload-area" style={{
                             border: "2px dashed #ccc",
                             borderRadius: "10px",
@@ -226,7 +269,7 @@ const SellerDocumentUpload = () => {
                                         <FaCheckCircle style={{ color: "#22c55e", fontSize: "1.5rem" }} />
                                         <p style={{ color: "#16a34a", margin: 0 }}>PAN Card Uploaded Successfully!</p>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => { setPanCard(null); setPanPreview(null); }}
                                         style={{ background: "#dc2626", color: "white", border: "none", padding: "5px 10px", borderRadius: "4px", cursor: "pointer", fontSize: "0.75rem", marginTop: "10px" }}
                                     >
@@ -241,8 +284,8 @@ const SellerDocumentUpload = () => {
                                 </label>
                             )}
                         </div>
-                        
-                        <button 
+
+                        <button
                             onClick={() => panPreview && setStep(2)}
                             disabled={!panPreview}
                             className="auth-submit-yellow-btn"
@@ -252,7 +295,7 @@ const SellerDocumentUpload = () => {
                         </button>
                     </div>
                 )}
-                
+
                 {/* Step 2: GSTIN Certificate Upload */}
                 {step === 2 && (
                     <div className="animate-fade">
@@ -263,7 +306,7 @@ const SellerDocumentUpload = () => {
                                 (Allowed formats: JPG, PNG, PDF - Max 5MB)
                             </p>
                         </div>
-                        
+
                         <div className="upload-area" style={{
                             border: "2px dashed #ccc",
                             borderRadius: "10px",
@@ -281,7 +324,7 @@ const SellerDocumentUpload = () => {
                                         <FaCheckCircle style={{ color: "#22c55e", fontSize: "1.5rem" }} />
                                         <p style={{ color: "#16a34a", margin: 0 }}>GSTIN Certificate Uploaded Successfully!</p>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => { setGstinCert(null); setGstinPreview(null); }}
                                         style={{ background: "#dc2626", color: "white", border: "none", padding: "5px 10px", borderRadius: "4px", cursor: "pointer", fontSize: "0.75rem", marginTop: "10px" }}
                                     >
@@ -296,12 +339,12 @@ const SellerDocumentUpload = () => {
                                 </label>
                             )}
                         </div>
-                        
+
                         <div style={{ display: "flex", gap: "10px", marginTop: "25px" }}>
                             <button onClick={() => setStep(1)} style={{ background: "#666", color: "white", border: "none", padding: "10px", borderRadius: "8px", cursor: "pointer", flex: 1 }}>
                                 ← Back
                             </button>
-                            <button 
+                            <button
                                 onClick={() => gstinPreview && setStep(3)}
                                 disabled={!gstinPreview}
                                 className="auth-submit-yellow-btn"
@@ -312,8 +355,8 @@ const SellerDocumentUpload = () => {
                         </div>
                     </div>
                 )}
-                
-                {/* Step 3: Live Selfie Verification with Colored Icons */}
+
+                {/* Step 3: Live Selfie Verification */}
                 {step === 3 && (
                     <div className="animate-fade">
                         <div style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -322,25 +365,25 @@ const SellerDocumentUpload = () => {
                                 Live Selfie Verification - Follow the instructions below
                             </p>
                         </div>
-                        
+
                         {/* Camera/Video Section */}
-                        <div style={{ 
-                            background: "#000", 
-                            borderRadius: "10px", 
+                        <div style={{
+                            background: "#000",
+                            borderRadius: "10px",
                             overflow: "hidden",
                             position: "relative",
-                            border: (verificationStatus.neckRotate && verificationStatus.headRotate && verificationStatus.selfieCaptured) 
-                                ? "3px solid #ff9900" 
-                                : (verificationStatus.neckRotate || verificationStatus.headRotate) 
-                                    ? "3px solid #22c55e" 
+                            border: (verificationStatus.neckRotate && verificationStatus.headRotate && verificationStatus.selfieCaptured)
+                                ? "3px solid #ff9900"
+                                : (verificationStatus.neckRotate || verificationStatus.headRotate)
+                                    ? "3px solid #22c55e"
                                     : "1px solid #ccc",
                             transition: "all 0.3s ease"
                         }}>
                             {!selfieImage ? (
-                                <video 
-                                    ref={videoRef} 
-                                    autoPlay 
-                                    playsInline 
+                                <video
+                                    ref={videoRef}
+                                    autoPlay
+                                    playsInline
                                     style={{ width: "100%", height: "auto", display: "block" }}
                                 />
                             ) : (
@@ -348,11 +391,11 @@ const SellerDocumentUpload = () => {
                             )}
                             <canvas ref={canvasRef} style={{ display: "none" }} />
                         </div>
-                        
-                        {/* Retake Button - Red color */}
+
+                        {/* Retake Button */}
                         {selfieImage && (
                             <div style={{ textAlign: "center", marginTop: "10px" }}>
-                                <button 
+                                <button
                                     onClick={retakeSelfie}
                                     style={{
                                         background: "#dc2626",
@@ -372,11 +415,11 @@ const SellerDocumentUpload = () => {
                                 </button>
                             </div>
                         )}
-                        
+
                         {/* Reset All Button */}
                         {(verificationStatus.neckRotate || verificationStatus.headRotate) && (
                             <div style={{ textAlign: "center", marginTop: "10px" }}>
-                                <button 
+                                <button
                                     onClick={resetAllVerifications}
                                     style={{
                                         background: "#ea580c",
@@ -396,10 +439,9 @@ const SellerDocumentUpload = () => {
                                 </button>
                             </div>
                         )}
-                        
-                        {/* Verification Steps with Colored Icons */}
+
+                        {/* Verification Steps */}
                         <div style={{ marginTop: "20px" }}>
-                            {/* Step 3.1: Neck Rotate */}
                             <div style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -422,7 +464,7 @@ const SellerDocumentUpload = () => {
                                     </div>
                                 </div>
                                 {!verificationStatus.neckRotate && (
-                                    <button 
+                                    <button
                                         onClick={verifyNeckRotate}
                                         disabled={loading}
                                         style={{
@@ -440,8 +482,7 @@ const SellerDocumentUpload = () => {
                                     </button>
                                 )}
                             </div>
-                            
-                            {/* Step 3.2: Head Rotate */}
+
                             <div style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -464,7 +505,7 @@ const SellerDocumentUpload = () => {
                                     </div>
                                 </div>
                                 {!verificationStatus.headRotate && (
-                                    <button 
+                                    <button
                                         onClick={verifyHeadRotate}
                                         disabled={!verificationStatus.neckRotate || loading}
                                         style={{
@@ -482,8 +523,7 @@ const SellerDocumentUpload = () => {
                                     </button>
                                 )}
                             </div>
-                            
-                            {/* Step 3.3: Capture Selfie */}
+
                             <div style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -505,7 +545,7 @@ const SellerDocumentUpload = () => {
                                     </div>
                                 </div>
                                 {!verificationStatus.selfieCaptured && (
-                                    <button 
+                                    <button
                                         onClick={captureSelfie}
                                         disabled={!verificationStatus.headRotate || !verificationStatus.neckRotate}
                                         style={{
@@ -524,13 +564,13 @@ const SellerDocumentUpload = () => {
                                 )}
                             </div>
                         </div>
-                        
+
                         {/* Navigation Buttons */}
                         <div style={{ display: "flex", gap: "10px", marginTop: "25px" }}>
                             <button onClick={() => setStep(2)} style={{ background: "#666", color: "white", border: "none", padding: "10px", borderRadius: "8px", cursor: "pointer", flex: 1 }}>
                                 ← Back
                             </button>
-                            <button 
+                            <button
                                 onClick={handleFinalSubmit}
                                 disabled={!verificationStatus.selfieCaptured || loading}
                                 className="auth-submit-yellow-btn"
@@ -542,7 +582,7 @@ const SellerDocumentUpload = () => {
                         </div>
                     </div>
                 )}
-                
+
             </div>
         </div>
     );

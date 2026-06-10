@@ -1421,7 +1421,7 @@ body {
 }
 
 /* ==========================================================================
-   AZORA EXACT AMAZON-STYLE LOGIN PAGE STYLES - WITH HINDI COMMENTS
+   AZORA EXACT AMAZON-STYLE SignIn PAGE STYLES - WITH HINDI COMMENTS
    ========================================================================== */
 
 /* पूरे लॉगिन पेज का बाहरी बैकग्राउंड (शुद्ध सफ़ेद और फुल स्क्रीन) */
@@ -1592,10 +1592,10 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   BOTTOM NEW CUSTOMER REGISTER PROMPT
+   BOTTOM NEW CUSTOMER SignUp PROMPT
    -------------------------------------------------------------------------- */
 
-.auth-register-prompt-container {
+.auth-SignUp-prompt-container {
   width: 350px;
   margin-top: 22px;
   display: flex;
@@ -1706,7 +1706,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   ADDITIONAL REGISTER PAGE SPECIFIC STYLES
+   ADDITIONAL SignUp PAGE SPECIFIC STYLES
    ========================================================================== */
 
 /* पासवर्ड के नीचे का बारीक हिंट टेक्स्ट */
@@ -2957,10 +2957,10 @@ body.stop-scroll {
 
 
 /* ==========================================================================
-   AZORA PREMIUM PURE AMAZON REGISTER SCREEN STYLES
+   AZORA PREMIUM PURE AMAZON SignUp SCREEN STYLES
    ========================================================================== */
 
-.amazon-register-page-container {
+.amazon-SignUP-page-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -2970,7 +2970,7 @@ body.stop-scroll {
   padding-top: 20px;
 }
 
-.amazon-register-content-wrapper {
+.amazon-SignUp-content-wrapper {
   width: 100%;
   max-width: 350px;
   display: flex;
@@ -3273,7 +3273,7 @@ body.stop-scroll {
 }
 
 /* ==========================================================================
-   AZORA PREMIUM SELLER REGISTER PAGE - THEMED COMPLETE STYLES (7 SECTIONS)
+   AZORA PREMIUM SELLER SignUp PAGE - THEMED COMPLETE STYLES (7 SECTIONS)
    ========================================================================== */
 
 .azora-seller-reg-page {
@@ -4385,7 +4385,7 @@ body.stop-scroll {
 }
 
 /* ==========================================================================
-   CUST REGISTER ISOLATION STYLES (ANTI-COLLISION FORCING)
+   CUST SignUp ISOLATION STYLES (ANTI-COLLISION FORCING)
    ========================================================================== */
 .cust-reg-isolated-page .cust-card-box-unique {
   max-width: 350px !important;

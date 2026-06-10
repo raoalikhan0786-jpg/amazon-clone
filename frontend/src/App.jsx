@@ -9,8 +9,8 @@ import {
 import Navbar from "./components/Navbar";
 import SubNavbar from "./components/SubNavbar";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import SignIn from "./pages/SignIn";        // ✅ SAHI (pages folder me hai)
+import SignUp from "./pages/SignUp";        // ✅ SAHI (pages folder me hai)
 import SellerRegister from "./pages/SellerRegister";
 import SellerDashboard from "./pages/SellerDashboard";
 import Cart from "./pages/Cart";
@@ -28,8 +28,8 @@ const AppContent = () => {
 
     // 🌟 Sab pages jahan navbar nahi chahiye
     const showHeader =
-        location.pathname !== "/login" &&
-        location.pathname !== "/register" &&
+        location.pathname !== "/SignIn" &&
+        location.pathname !== "/SignUp" &&
         location.pathname !== "/seller/register" &&
         location.pathname !== "/seller/dashboard" &&
         location.pathname !== "/admin/dashboard" &&
@@ -38,8 +38,6 @@ const AppContent = () => {
         location.pathname !== "/seller/document-upload" &&
         location.pathname !== "/seller/approval-pending";
 
-
-
     return (
         <>
             {showHeader && <Navbar />}
@@ -47,8 +45,8 @@ const AppContent = () => {
 
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+                <Route path="/SignIn" element={<SignIn />} />
+                <Route path="/SignUp" element={<SignUp />} />
                 <Route path="/seller/register" element={<SellerRegister />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/seller/dashboard" element={<SellerDashboard />} />
@@ -58,6 +56,7 @@ const AppContent = () => {
                 <Route path="/verify-code" element={<VerifyCode />} />
                 <Route path="/seller/document-upload" element={<SellerDocumentUpload />} />
                 <Route path="/seller/approval-pending" element={<SellerApprovalPending />} />
+            
             </Routes>
         </>
     );

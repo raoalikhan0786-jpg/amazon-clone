@@ -160,8 +160,8 @@ const Navbar = () => {
           <div className="azora-account-dropdown-menu">
             {/* टॉप का साइन-इन बटन एरिया */}
             <div className="dropdown-signin-header">
-              <a href="/login" class="dropdown-signin-btn">Sign in</a>
-              <p className="dropdown-new-cust">New customer? <a href="/register">Start here.</a></p>
+              <a href="/SignIn" class="dropdown-signin-btn">Sign in</a>
+              <p className="dropdown-new-cust">New customer? <a href="/SignUp">Start here.</a></p>
             </div>
 
             {/* दो कॉलम्स वाला मुख्य कंटेंट एरिया */}

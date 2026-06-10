@@ -37,7 +37,7 @@ const SubNavbar = () => {
           <Link to="/customer-service" className="azora-sub-link-item">Customer Service</Link>
           <Link to="/registry" className="azora-sub-link-item">Registry</Link>
           <Link to="/gift-cards" className="azora-sub-link-item">Gift Cards</Link>
-          <Link to="/seller/register" className="azora-sub-link-item">Sell</Link>
+          <Link to="/seller/" className="azora-sub-link-item">Sell</Link>
         </div>
 
         {/* राइट साइड में चमकता हुआ प्रोमो टेक्स्ट */}
@@ -80,9 +80,9 @@ const SubNavbar = () => {
           <hr className="sidebar-divider-line" />
 
           <div className="sidebar-section-title">Help & Settings</div>
-          <Link to="/login" className="sidebar-item-link" onClick={toggleSidebar}>Your Account</Link>
+          <Link to="/SignIn" className="sidebar-item-link" onClick={toggleSidebar}>Your Account</Link>
           <Link to="/customer-service" className="sidebar-item-link" onClick={toggleSidebar}>Customer Service</Link>
-          <Link to="/login" className="sidebar-item-link" onClick={toggleSidebar}>Sign In</Link>
+          <Link to="/SignIn" className="sidebar-item-link" onClick={toggleSidebar}>Sign In</Link>
         </div>
 
       </div>
