@@ -1,0 +1,221 @@
+<!-- frontend/src/templates/invoicePlatform.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Platform Fee Invoice - Azorax</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 40px;
+            background: #fff;
+            font-size: 12px;
+        }
+
+        .invoice-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #03bafc;
+            font-size: 28px;
+        }
+
+        .header h2 {
+            font-size: 16px;
+            color: #475569;
+            margin-top: 5px;
+        }
+
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border-left: 4px solid #03bafc;
+            padding-left: 10px;
+        }
+
+        .billed-from,
+        .billed-to {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11px;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .table th {
+            background: #f1f5f9;
+            font-weight: bold;
+        }
+
+        .grand-total {
+            text-align: right;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fef3c7;
+            border-radius: 8px;
+        }
+
+        .footer {
+            font-size: 9px;
+            color: #64748b;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-container">
+        <div class="header">
+            <h1>AZORAX</h1>
+            <h2>Platform Fee Invoice</h2>
+        </div>
+
+        <div class="invoice-details">
+            <div><strong>Invoice Number:</strong> {{invoiceNumber}}</div>
+            <div><strong>Invoice Date:</strong> {{invoiceDate}}</div>
+            <div><strong>Order ID:</strong> {{orderId}}</div>
+        </div>
+
+        <div class="billed-from">
+            <strong>Billed From (Azorax)</strong><br>
+            Azorax Technologies Pvt Ltd<br>
+            {{azoraAddress}}<br>
+            <strong>GSTIN:</strong> {{azoraGST}}<br>
+            <strong>PAN:</strong> {{azoraPAN}}<br>
+            <strong>CIN:</strong> {{azoraCIN}}
+        </div>
+
+        <div class="billed-to">
+            <strong>Billed To (Seller)</strong><br>
+            {{sellerBusinessName}}<br>
+            {{sellerAddress}}<br>
+            <strong>GSTIN:</strong> {{sellerGST}}<br>
+            <strong>State:</strong> {{sellerState}}<br>
+            <strong>State Code:</strong> {{sellerStateCode}}
+        </div>
+
+        <div class="section">
+            <div class="section-title">Platform Fees Details</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Particulars</th>
+                        <th>SAC</th>
+                        <th>Qty</th>
+                        <th>Gross Amount (₹)</th>
+                        <th>Taxable Value (₹)</th>
+                        <th>IGST (₹)</th>
+                        <th>Total (₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Commission (2%)</td>
+                        <td>998599</td>
+                        <td>1.0</td>
+                        <td>{{commission}}</td>
+                        <td>{{commissionTaxable}}</td>
+                        <td>{{commissionGST}}</td>
+                        <td>{{commissionTotal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping Fee</td>
+                        <td>996519</td>
+                        <td>1.0</td>
+                        <td>{{shippingFee}}</td>
+                        <td>{{shippingTaxable}}</td>
+                        <td>{{shippingGST}}</td>
+                        <td>{{shippingTotal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pick & Pack Fee</td>
+                        <td>996519</td>
+                        <td>1.0</td>
+                        <td>{{pickPackFee}}</td>
+                        <td>{{pickPackTaxable}}</td>
+                        <td>{{pickPackGST}}</td>
+                        <td>{{pickPackTotal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Closing Fee</td>
+                        <td>996519</td>
+                        <td>1.0</td>
+                        <td>{{closingFee}}</td>
+                        <td>{{closingTaxable}}</td>
+                        <td>{{closingGST}}</td>
+                        <td>{{closingTotal}}</td>
+                    </tr>
+                    <tr style="background: #f1f5f9; font-weight: bold;">
+                        <td colspan="6" style="text-align: right;">Total</td>
+                        <td>{{grandTotal}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grand-total">
+            <strong>Grand Total Payable to Azorax</strong><br>
+            ₹ {{grandTotal}}
+        </div>
+
+        <div class="footer">
+            <p>Is the supply subject to reverse charge: No</p>
+            <p><strong>Contact Azorax:</strong> support@azorax.com | www.azorax.com/helpcentre</p>
+            <p>E. & O.E. | page 1 of 1</p>
+        </div>
+    </div>
+</body>
+
+</html>

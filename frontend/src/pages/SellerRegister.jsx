@@ -86,12 +86,12 @@
 
 //         alert("Seller Basic Info Saved! Now please upload your documents.");
 
-//         // ✅ FIXED: Email aur Phone alag alag save honge
+//         // ✅ FIXED: Email aur Phone alag alag save honge (inputType ke hisaab se)
 //         const finalSellerData = {
 //             ownerName: formData.ownerName,
 //             storeName: formData.storeName,
-//             email: /[a-zA-Z@]/.test(formData.contactInput) ? formData.contactInput : "N/A",
-//             phone: /^\d*$/.test(formData.contactInput.replace(/\+/g, "")) ? formData.contactInput : "N/A",
+//             email: inputType === "email" ? formData.contactInput : "N/A",
+//             phone: inputType === "phone" ? formData.contactInput : "N/A",
 //             contactInput: formData.contactInput,
 //             otpCode: formData.otpCode,
 //             panNumber: formData.panNumber,
@@ -265,7 +265,7 @@
 // export default SellerRegister;
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUpload, FaStore, FaLock, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+import { FaUpload, FaStore, FaLock, FaCheckCircle, FaExclamationCircle, FaBuilding, FaMapMarkerAlt, FaRegBuilding } from "react-icons/fa";
 
 const SellerRegister = () => {
     const navigate = useNavigate();
@@ -278,7 +278,18 @@ const SellerRegister = () => {
         panNumber: "",
         gstinNumber: "",
         bankAccount: "",
-        ifscCode: ""
+        ifscCode: "",
+        
+        // ========== 🆕 NEW FIELDS FOR INVOICE SYSTEM (ADDED, NOTHING DELETED) ==========
+        businessName: "",
+        businessAddress: "",
+        registeredOffice: "",
+        cinNumber: "",
+        businessPhone: "",
+        businessEmail: "",
+        bankAccountHolderName: "",
+        bankName: "",
+        upiId: ""
     });
 
     const [inputType, setInputType] = useState("email");
@@ -286,6 +297,9 @@ const SellerRegister = () => {
     const [otpSent, setOtpSent] = useState(false);
     const [isOtpVerified, setIsOtpVerified] = useState(false);
     const [activeErrors, setActiveErrors] = useState({});
+
+    // ========== 🆕 NEW STATE FOR TOGGLING BUSINESS DETAILS SECTION ==========
+    const [showBusinessDetails, setShowBusinessDetails] = useState(false);
 
     const handleContactChange = (e) => {
         const val = e.target.value;
@@ -343,6 +357,12 @@ const SellerRegister = () => {
         if (!formData.bankAccount.trim()) errors.bankAccount = "Bank Account number is mandatory.";
         if (formData.ifscCode.length < 5) errors.ifscCode = "Invalid Bank IFSC Code.";
 
+        // ========== 🆕 NEW VALIDATIONS FOR BUSINESS DETAILS (Optional - Sirf agar showBusinessDetails true hai to) ==========
+        if (showBusinessDetails) {
+            if (!formData.businessName.trim()) errors.businessName = "Business name is required for invoice.";
+            if (!formData.businessAddress.trim()) errors.businessAddress = "Business address is required for invoice.";
+        }
+
         if (Object.keys(errors).length > 0) {
             setActiveErrors(errors);
             alert("Registration Failed! Please fix the highlighted fields on the screen.");
@@ -362,7 +382,18 @@ const SellerRegister = () => {
             panNumber: formData.panNumber,
             gstinNumber: formData.gstinNumber,
             bankAccount: formData.bankAccount,
-            ifscCode: formData.ifscCode
+            ifscCode: formData.ifscCode,
+            
+            // ========== 🆕 NEW FIELDS FOR INVOICE ==========
+            businessName: formData.businessName || formData.storeName, // Agar businessName nahi hai to storeName use hoga
+            businessAddress: formData.businessAddress,
+            registeredOffice: formData.registeredOffice,
+            cinNumber: formData.cinNumber,
+            businessPhone: formData.businessPhone || (inputType === "phone" ? formData.contactInput : ""),
+            businessEmail: formData.businessEmail || (inputType === "email" ? formData.contactInput : ""),
+            bankAccountHolderName: formData.bankAccountHolderName || formData.ownerName,
+            bankName: formData.bankName,
+            upiId: formData.upiId
         };
 
         sessionStorage.setItem("sellerBasicInfo", JSON.stringify(finalSellerData));
@@ -516,6 +547,149 @@ const SellerRegister = () => {
                             />
                             {activeErrors.ifscCode && <span style={{ color: "#dc2626", fontSize: "0.75rem", marginTop: "3px" }}>⚠️ {activeErrors.ifscCode}</span>}
                         </div>
+                    </div>
+
+                    {/* ========== 🆕 NEW SECTION: BUSINESS DETAILS FOR INVOICE (Toggleable) ========== */}
+                    <div style={{ marginTop: "20px", borderTop: "1px solid #e2e8f0", paddingTop: "15px" }}>
+                        <button
+                            type="button"
+                            onClick={() => setShowBusinessDetails(!showBusinessDetails)}
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                background: "none",
+                                border: "none",
+                                color: "#03bafc",
+                                fontSize: "14px",
+                                fontWeight: "bold",
+                                cursor: "pointer",
+                                marginBottom: showBusinessDetails ? "15px" : "0"
+                            }}
+                        >
+                            <FaBuilding />
+                            {showBusinessDetails ? "▼ Hide Business Details (For Invoice)" : "▶ Add Business Details (For Invoice)"}
+                        </button>
+
+                        {showBusinessDetails && (
+                            <div style={{ 
+                                animation: "fadeIn 0.3s ease",
+                                background: "#f8fafc",
+                                padding: "15px",
+                                borderRadius: "8px",
+                                marginTop: "5px"
+                            }}>
+                                <p style={{ fontSize: "12px", color: "#64748b", marginBottom: "15px" }}>
+                                    📄 These details will appear on customer invoices (like Flipkart/Amazon)
+                                </p>
+
+                                <div className="auth-input-group">
+                                    <label className="auth-input-label">Business Name (Legal Name) <span style={{ color: "#64748b", fontSize: "11px" }}>(Optional)</span></label>
+                                    <input
+                                        type="text"
+                                        className="auth-text-field"
+                                        placeholder="e.g., ABC Electronics Pvt Ltd"
+                                        style={{ borderColor: activeErrors.businessName ? "#dc2626" : "#a6a6a6" }}
+                                        value={formData.businessName}
+                                        onChange={(e) => { setFormData({ ...formData, businessName: e.target.value }); setActiveErrors({ ...activeErrors, businessName: "" }); }}
+                                    />
+                                    <span style={{ fontSize: "11px", color: "#64748b" }}>If empty, Store Name will be used on invoices</span>
+                                </div>
+
+                                <div className="auth-input-group">
+                                    <label className="auth-input-label">Business Address <span style={{ color: "#64748b", fontSize: "11px" }}>(Optional)</span></label>
+                                    <textarea
+                                        rows="2"
+                                        className="auth-text-field"
+                                        placeholder="Complete business address with city, state, pincode"
+                                        style={{ borderColor: activeErrors.businessAddress ? "#dc2626" : "#a6a6a6" }}
+                                        value={formData.businessAddress}
+                                        onChange={(e) => { setFormData({ ...formData, businessAddress: e.target.value }); setActiveErrors({ ...activeErrors, businessAddress: "" }); }}
+                                    />
+                                </div>
+
+                                <div className="auth-input-group">
+                                    <label className="auth-input-label">Registered Office Address <span style={{ color: "#64748b", fontSize: "11px" }}>(Optional)</span></label>
+                                    <textarea
+                                        rows="2"
+                                        className="auth-text-field"
+                                        placeholder="Registered office address (if different from business address)"
+                                        value={formData.registeredOffice}
+                                        onChange={(e) => setFormData({ ...formData, registeredOffice: e.target.value })}
+                                    />
+                                </div>
+
+                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "15px" }}>
+                                    <div className="auth-input-group">
+                                        <label className="auth-input-label">CIN Number <span style={{ color: "#64748b", fontSize: "11px" }}>(Optional)</span></label>
+                                        <input
+                                            type="text"
+                                            className="auth-text-field"
+                                            placeholder="U52500HR2016PTC064234"
+                                            value={formData.cinNumber}
+                                            onChange={(e) => setFormData({ ...formData, cinNumber: e.target.value.toUpperCase() })}
+                                        />
+                                    </div>
+
+                                    <div className="auth-input-group">
+                                        <label className="auth-input-label">UPI ID <span style={{ color: "#64748b", fontSize: "11px" }}>(Optional)</span></label>
+                                        <input
+                                            type="text"
+                                            className="auth-text-field"
+                                            placeholder="storename@okhdfcbank"
+                                            value={formData.upiId}
+                                            onChange={(e) => setFormData({ ...formData, upiId: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "15px" }}>
+                                    <div className="auth-input-group">
+                                        <label className="auth-input-label">Bank Account Holder Name</label>
+                                        <input
+                                            type="text"
+                                            className="auth-text-field"
+                                            placeholder="Account holder name"
+                                            value={formData.bankAccountHolderName}
+                                            onChange={(e) => setFormData({ ...formData, bankAccountHolderName: e.target.value })}
+                                        />
+                                    </div>
+
+                                    <div className="auth-input-group">
+                                        <label className="auth-input-label">Bank Name</label>
+                                        <input
+                                            type="text"
+                                            className="auth-text-field"
+                                            placeholder="e.g., State Bank of India"
+                                            value={formData.bankName}
+                                            onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="auth-input-group">
+                                    <label className="auth-input-label">Business Phone <span style={{ color: "#64748b", fontSize: "11px" }}>(For Invoice)</span></label>
+                                    <input
+                                        type="tel"
+                                        className="auth-text-field"
+                                        placeholder="Business contact number"
+                                        value={formData.businessPhone}
+                                        onChange={(e) => setFormData({ ...formData, businessPhone: e.target.value })}
+                                    />
+                                </div>
+
+                                <div className="auth-input-group">
+                                    <label className="auth-input-label">Business Email <span style={{ color: "#64748b", fontSize: "11px" }}>(For Invoice)</span></label>
+                                    <input
+                                        type="email"
+                                        className="auth-text-field"
+                                        placeholder="business@example.com"
+                                        value={formData.businessEmail}
+                                        onChange={(e) => setFormData({ ...formData, businessEmail: e.target.value })}
+                                    />
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <button type="submit" className="auth-submit-yellow-btn" style={{ height: "40px", fontSize: "1rem", marginTop: "15px" }}>
